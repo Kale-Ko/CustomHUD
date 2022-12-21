@@ -24,7 +24,8 @@ public class SettingsElement {
     private static final Map<String, SimpleOption<?>> simpleOptions = new HashMap<>();
 
     private static void init() {
-        ((GameOptionsAccessor)MinecraftClient.getInstance().options).invokeAccept(new GameOptions.Visitor() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        ((GameOptionsAccessor)client.options).invokeAccept(new GameOptions.Visitor() {
             @Override
             public <T> void accept(String key, SimpleOption<T> option) {
                 simpleOptions.put(key.toLowerCase(), option);
@@ -82,7 +83,8 @@ public class SettingsElement {
         else if (setting.startsWith("sound_"))
             setting = "soundcategory_" + setting.substring(6);
 
-        GameOptions options = MinecraftClient.getInstance().options;
+        MinecraftClient client = MinecraftClient.getInstance();
+        GameOptions options = client.options;
         if (setting.startsWith("key_")) {
             String key = setting.substring(4);
             for (KeyBinding binding : options.allKeys)
@@ -100,7 +102,7 @@ public class SettingsElement {
             for (SoundCategory soundCategory : SoundCategory.values())
                 if (soundCategory.getName().equalsIgnoreCase(cat))
                     return new Pair<>(new NumberSupplierElement(NumberSupplierElement.of(
-                            () -> ((GameOptionsAccessor)options).getSoundVolumeLevels().get(soundCategory) * 100,
+                            () -> ((GameOptionsAccessor)options).getSoundVolumeLevels().get(soundCategory).getValue() * 100,
                             flags.precision != -1 ? flags.precision : 0), flags.scale), null);
             return new Pair<>(null,"Unknown sound category: " + cat);
         }

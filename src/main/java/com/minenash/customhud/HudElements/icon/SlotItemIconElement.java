@@ -92,7 +92,8 @@ public class SlotItemIconElement extends IconElement {
     }
 
     public void renderCooldown(ItemStack stack, int x, int y) {
-        ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
+        MinecraftClient client = MinecraftClient.getInstance();
+        ClientPlayerEntity clientPlayerEntity = client.player;
 
         float f = clientPlayerEntity == null ? 0.0f : clientPlayerEntity.getItemCooldownManager().getCooldownProgress(stack.getItem(), client.getTickDelta());
         if (f > 0.0f) {
@@ -109,13 +110,13 @@ public class SlotItemIconElement extends IconElement {
     }
 
     private void renderGuiQuad(BufferBuilder buffer, double x, double y, double width, double height, int red, int green, int blue, int alpha) {
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
         buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         buffer.vertex(x + 0, y + 0, 0.0).color(red, green, blue, alpha).next();
         buffer.vertex(x + 0, y + height, 0.0).color(red, green, blue, alpha).next();
         buffer.vertex(x + width, y + height, 0.0).color(red, green, blue, alpha).next();
         buffer.vertex(x + width, y + 0, 0.0).color(red, green, blue, alpha).next();
-        BufferRenderer.drawWithShader(buffer.end());
+        BufferRenderer.drawWithGlobalProgram(buffer.end());
     }
 
 }

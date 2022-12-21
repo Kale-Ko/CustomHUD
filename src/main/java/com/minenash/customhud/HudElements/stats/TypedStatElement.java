@@ -28,7 +28,8 @@ public class TypedStatElement<T> implements HudElement {
         if (!type.hasStat(entry))
             return "0";
 
-        int value =  MinecraftClient.getInstance().player.getStatHandler().getStat(type, entry);
+        MinecraftClient client = MinecraftClient.getInstance();
+        int value = client.player.getStatHandler().getStat(type, entry);
         return flags.formatted ? type.getOrCreateStat(entry).format(value) : String.format("%."+ flags.precision +"f", value * flags.scale);
     }
 

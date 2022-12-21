@@ -18,7 +18,8 @@ public class ItemCountElement implements HudElement {
 
     @Override
     public Number getNumber() {
-        return MinecraftClient.getInstance().player.getInventory().count(item);
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client.player.getInventory().count(item);
     }
 
     @Override

@@ -1,11 +1,12 @@
 package com.minenash.customhud.mixin;
 
-import it.unimi.dsi.fastutil.objects.Object2FloatMap;
-import net.minecraft.client.option.GameOptions;
-import net.minecraft.sound.SoundCategory;
+import java.util.Map;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.SimpleOption;
+import net.minecraft.sound.SoundCategory;
 
 @Mixin(GameOptions.class)
 public interface GameOptionsAccessor {
@@ -14,6 +15,6 @@ public interface GameOptionsAccessor {
     void invokeAccept(GameOptions.Visitor visitor);
 
     @Accessor
-    Object2FloatMap<SoundCategory> getSoundVolumeLevels();
+    Map<SoundCategory, SimpleOption<Double>> getSoundVolumeLevels();
 
 }

@@ -2,12 +2,10 @@ package com.minenash.customhud.mixin;
 
 import com.minenash.customhud.ComplexData;
 import com.minenash.customhud.CustomHud;
-import net.fabricmc.loader.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.util.profiler.Recorder;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

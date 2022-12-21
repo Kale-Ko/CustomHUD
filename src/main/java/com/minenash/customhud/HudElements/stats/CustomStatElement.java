@@ -19,7 +19,8 @@ public class CustomStatElement implements HudElement {
     }
 
     private int get() {
-        return MinecraftClient.getInstance().player.getStatHandler().getStat(stat);
+        MinecraftClient client = MinecraftClient.getInstance();
+        return client.player.getStatHandler().getStat(stat);
     }
 
     @Override

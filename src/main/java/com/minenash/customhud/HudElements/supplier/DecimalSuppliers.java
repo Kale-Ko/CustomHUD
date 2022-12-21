@@ -7,8 +7,6 @@ import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.function.Supplier;
-
 import static com.minenash.customhud.HudElements.supplier.NumberSupplierElement.*;
 
 public class DecimalSuppliers {
